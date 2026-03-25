@@ -1,12 +1,9 @@
-﻿using CommonBasicLibraries.CollectionClasses;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace AOEOGearBasicLibrary.Helpers;
-
-public static class UnitGearClass
+public static class UnitGearLookup
 {
+    private static readonly Dictionary<string, HashSet<string>> _civTraits = [];
+
     private static readonly Dictionary<string, BasicList<string>> _unitTraits = new(StringComparer.Ordinal)
     {
         ["Ba_Civ_Villager"] = ["Tools", "ArmorCloth", "GearVill"],
@@ -298,5 +295,36 @@ public static class UnitGearClass
             return traits;
         }
         throw new CustomBasicException($"No gear for {unitName}");
+    }
+
+
+    public static HashSet<string> GetTraitTypesForCivilization(string civAbb)
+    {
+        if (_civTraits.TryGetValue(civAbb, out var traits) == false)
+        {
+            traits = _unitTraits
+                .Where(x => x.Key.StartsWith(civAbb + "_", StringComparison.Ordinal))
+                .SelectMany(x => x.Value)
+                .ToHashSet(StringComparer.Ordinal);
+
+            _civTraits[civAbb] = traits;
+        }
+
+        return traits;
+    }
+
+    public static bool CanCivilizationUseGear(string civAbb, string gearCategory)
+    {
+        if (_civTraits.TryGetValue(civAbb, out var traits) == false)
+        {
+            traits = _unitTraits
+                .Where(x => x.Key.StartsWith(civAbb + "_", StringComparison.Ordinal))
+                .SelectMany(x => x.Value)
+                .ToHashSet(StringComparer.Ordinal);
+
+            _civTraits[civAbb] = traits;
+        }
+
+        return traits.Contains(gearCategory);
     }
 }

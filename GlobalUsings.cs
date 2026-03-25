@@ -1,1 +1,2 @@
 ﻿global using CommonBasicLibraries.BasicDataSettingsAndProcesses;
+global using CommonBasicLibraries.CollectionClasses;
