@@ -1,5 +1,4 @@
-﻿
-namespace AOEOGearBasicLibrary.Helpers;
+﻿namespace AOEOGearBasicLibrary.Helpers;
 public static class UnitGearLookup
 {
     private static readonly Dictionary<string, HashSet<string>> _civTraits = [];
@@ -288,6 +287,19 @@ public static class UnitGearLookup
         ["Ro_Cav_Scout"] = ["Swords1H", "ArmorLgt", "ScoutSpecial1H"],
         ["Ro_Bldg_Millarium"] = ["ArmorBuilding", "GearBldg"]
     };
+    private static HashSet<string>? _allGearCategories;
+
+    public static HashSet<string> GetAllGearCategories()
+    {
+        if (_allGearCategories is null)
+        {
+            _allGearCategories = _unitTraits
+                .SelectMany(x => x.Value)
+                .ToHashSet(StringComparer.Ordinal);
+        }
+
+        return _allGearCategories;
+    }
     public static BasicList<string> GetTraitsForUnit(string unitName)
     {
         if (_unitTraits.TryGetValue(unitName, out BasicList<string>? traits))
