@@ -32,6 +32,7 @@ public static class UnitGearLookup
         ["Ba_Shp_RamShip"] = ["RamHeads", "ArmorPlt", "GearBoat"],
         ["Ba_Inf_ShieldBearer"] = ["Spears1H", "Shields", "ArmorCloth", "Gear"],
         ["Ba_Bldg_Farm"] = ["ArmorBuilding", "GearBldg"],
+        ["Ba_Bldg_House"] = ["ArmorBuilding", "GearBldg"],
         ["Ba_Bldg_Market"] = ["ArmorBuilding", "GearBldg"],
         ["Ba_Bldg_Armory"] = ["ArmorBuilding", "GearBldg"],
         ["Ba_Bldg_ArcheryRange"] = ["ArmorBuilding", "GearBldg"],
@@ -80,8 +81,10 @@ public static class UnitGearLookup
         ["Eg_Arc_ElephantArcher"] = ["Bows", "Arrows", "ArmorCloth", "Gear"],
         ["Eg_Arc_Slinger"] = ["Sling", "ArmorCloth", "Gear"],
         ["Eg_Bldg_Armory"] = ["ArmorBuilding", "GearBldg"],
+        ["Eg_Bldg_House"] = ["ArmorBuilding", "GearBldg"],
         ["Eg_Bldg_Barracks"] = ["ArmorBuilding", "GearBldg"],
         ["Eg_Bldg_Dock"] = ["ArmorBuilding", "GearBldg"],
+        ["Eg_Bldg_LookoutTower"] = ["ArmorBuilding", "GearBldg"],
         ["Eg_Bldg_Farm"] = ["ArmorBuilding", "GearBldg"],
         ["Eg_Bldg_Fortress"] = ["Bows", "Arrows", "ArmorBuilding", "GearBldg"],
         ["Eg_Bldg_GuardTower"] = ["Bows", "Arrows", "ArmorBuilding", "GearBldg"],
@@ -119,6 +122,7 @@ public static class UnitGearLookup
         ["Gr_Sie_Ballista"] = ["BallistaArms", "ArmorPlt", "GearSiege"],
         ["Gr_Sie_BatteringRam"] = ["RamHeads", "ArmorPlt", "GearSiege"],
         ["Gr_Bldg_Barracks"] = ["ArmorBuilding", "GearBldg"],
+        ["Gr_Bldg_House"] = ["ArmorBuilding", "GearBldg"],
         ["Gr_Bldg_Academy"] = ["ArmorBuilding", "GearBldg"],
         ["Gr_Bldg_ArcheryRange"] = ["ArmorBuilding", "GearBldg"],
         ["Gr_Bldg_Dock"] = ["ArmorBuilding", "GearBldg"],
@@ -144,6 +148,7 @@ public static class UnitGearLookup
         ["Gr_Arc_Gastrophes"] = ["BellyBows", "Arrows", "ArmorCloth", "Gear"],
         ["Gr_Shp_FireShip"] = ["FireThrowers", "ArmorPlt", "GearBoat"],
         ["In_Bldg_Farm"] = ["ArmorBuilding", "GearBldg"],
+        ["In_Bldg_House"] = ["ArmorBuilding", "GearBldg"],
         ["In_Bldg_StoreHouse"] = ["ArmorBuilding", "GearBldg"],
         ["In_Bldg_Monastery"] = ["ArmorBuilding", "GearBldg"],
         ["In_Bldg_Market"] = ["ArmorBuilding", "GearBldg"],
@@ -232,6 +237,7 @@ public static class UnitGearLookup
         ["Pe_Civ_UtilityBoat"] = ["Merchant", "Arrows", "ArmorPlt", "GearBoat"],
         ["Pe_Shp_MangonelGalley"] = ["BallistaArms", "ArmorPlt", "GearBoat"],
         ["Pe_Bldg_WarAcademy"] = ["ArmorBuilding", "GearBldg"],
+        ["Pe_Bldg_House"] = ["ArmorBuilding", "GearBldg"],
         ["Pe_Bldg_ArcheryRange"] = ["ArmorBuilding", "GearBldg"],
         ["Pe_Bldg_Armory"] = ["ArmorBuilding", "GearBldg"],
         ["Pe_Bldg_Barracks"] = ["ArmorBuilding", "GearBldg"],
@@ -311,7 +317,7 @@ public static class UnitGearLookup
     }
 
 
-    public static HashSet<string> GetTraitTypesForCivilization(string civAbb)
+    public static BasicList<string> GetTraitTypesForCivilization(string civAbb)
     {
         if (_civTraits.TryGetValue(civAbb, out var traits) == false)
         {
@@ -323,7 +329,7 @@ public static class UnitGearLookup
             _civTraits[civAbb] = traits;
         }
 
-        return traits;
+        return traits.ToBasicList();
     }
 
     public static bool CanCivilizationUseGear(string civAbb, string gearCategory)
