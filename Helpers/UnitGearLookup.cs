@@ -18,6 +18,7 @@ public static class UnitGearLookup
         ["Ba_Cav_Scout"] = ["Swords1H", "ArmorLgt", "ScoutSpecial1H"],
         ["Ba_Cav_Lancer"] = ["Spears2H", "ArmorLgt", "Gear"],
         ["Ba_Sie_Palintonon"] = ["BallistaArms", "ArmorPlt", "GearSiege"],
+        ["Ba_Sie_SiegeTower"] = ["RamHeads", "ArmorPlt", "GearSiege"],
         ["Ba_Spc_Priest"] = ["Staffs2H", "ArmorCloth", "GearPriest"],
         ["Ba_Bldg_TownCenter"] = ["Bows", "Arrows", "ArmorBuilding", "GearBldg"],
         ["Ba_Bldg_LookoutTower"] = ["ArmorBuilding", "GearBldg"],
